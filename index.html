@@ -41,25 +41,28 @@
 
       /* Faixa Topo */
       .top-banner {
-        background-color: #ffd700;
-        color: #0a1128;
+        background-color: #e63946;
+        color: #ffffff;
         text-align: center;
         padding: 12px 0;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.95rem;
         letter-spacing: 0.5px;
+        text-transform: uppercase;
       }
 
       /* Hero Section */
       .hero {
         position: relative;
-        height: 100vh;
-        min-height: 700px;
+        min-height: 80vh;
+        height: auto;
+        padding: 80px 0 140px;
         background-image: url("https://generated-images.adapta.one/higor_smoura%40hotmail.com/019d44f9-6d78-7780-a2e3-184162c4199f/2026-03-31T18-02-48-497Z_Ultra_realistic_high_end_automotive_photography.png");
         background-size: cover;
         background-position: center;
         display: flex;
         align-items: center;
+        overflow: hidden;
       }
       .hero::before {
         content: "";
@@ -76,37 +79,54 @@
       .hero-content {
         position: relative;
         z-index: 2;
-        max-width: 600px;
+        max-width: 1100px;
+        text-align: center;
+        margin: 0 auto;
       }
       .hero h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-size: clamp(1.8rem, 4.5vw, 3.5rem);
         font-weight: 900;
         margin-bottom: 20px;
         line-height: 1.1;
         text-transform: uppercase;
+        max-width: 100%;
       }
-      .hero h1 span {
+      .hero h1 .highlight {
         color: #ffd700;
+        font-size: 1.15em;
+        display: inline-block;
+      }
+      .hero h1 .sub-highlight {
+        color: #fff;
+        text-decoration: underline #ffd700 4px;
       }
       .hero p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
+        font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+        margin-bottom: 25px;
         color: #e2e8f0;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.8;
       }
       .cta-button {
         background-color: #ffd700;
         color: #0a1128;
-        padding: 18px 40px;
+        padding: 18px 42px;
         border: none;
         border-radius: 50px;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 800;
         text-transform: uppercase;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        white-space: nowrap;
       }
       .cta-button:hover {
         background-color: #ffffff;
@@ -117,26 +137,31 @@
       /* Formulário Glassmorphism */
       .form-section {
         position: relative;
-        margin-top: -150px;
-        z-index: 3;
+        margin-top: 20px; /* Padrão sem sobreposição para evitar cortes */
+        z-index: 20;
         padding: 0 20px;
       }
+      @media (min-height: 900px) and (min-width: 1024px) {
+        .form-section {
+          margin-top: -150px; /* Só sobrepõe em telas muito altas */
+        }
+      }
       .form-container {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 24px;
         padding: 50px;
         max-width: 800px;
         margin: 0 auto;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
       }
       .form-container h2 {
         text-align: center;
         margin-bottom: 10px;
         color: #ffd700;
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
       }
       .form-container > p {
         text-align: center;
@@ -164,14 +189,35 @@
       .form-group input,
       .form-group select {
         width: 100%;
-        padding: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 16px 45px 16px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.4);
         color: #ffffff;
         font-size: 1rem;
         font-family: "Inter", sans-serif;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+      }
+      .form-group.select-group {
+        position: relative;
+      }
+      .form-group.select-group::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 22px;
+        bottom: 18px; /* Mais estável que o top fixo */
+        color: #ffd700;
+        pointer-events: none;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+      .form-group.select-group:focus-within::after {
+        transform: rotate(180deg);
       }
       .form-group input:focus,
       .form-group select:focus {
@@ -211,13 +257,13 @@
         padding: 100px 0;
       }
       .section-title {
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
         margin-bottom: 20px;
         text-align: center;
       }
       .section-subtitle {
         text-align: center;
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
         color: #a0aec0;
         margin-bottom: 60px;
         max-width: 800px;
@@ -259,35 +305,100 @@
       }
 
       /* Benefícios */
+      /* Benefícios (Cards de Cima) */
       .benefits-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
       }
       .benefit-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        padding: 40px 30px;
-        text-align: center;
-        transition: all 0.3s ease;
+        background: linear-gradient(165deg, rgba(30, 41, 59, 0.6), rgba(10, 17, 40, 0.95));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-left: 3px solid #ffd700;
+        border-radius: 16px;
+        padding: 30px 25px;
+        text-align: left;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       }
       .benefit-card:hover {
-        transform: translateY(-10px);
-        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(10px);
+        background: linear-gradient(165deg, rgba(40, 51, 69, 0.8), rgba(15, 23, 42, 1));
         border-color: #ffd700;
+        box-shadow: -10px 15px 40px rgba(255, 215, 0, 0.1);
       }
       .benefit-card i {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: #ffd700;
-        margin-bottom: 20px;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
       }
       .benefit-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
-      .benefit-card p {
-        color: #a0aec0;
+
+      /* Serviços (Cards de Baixo - Diferenciados) */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+      }
+      .service-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 20px 25px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: all 0.3s ease;
+        text-align: left;
+      }
+      .service-card:hover {
+        background: rgba(255, 215, 0, 0.05);
+        border-color: rgba(255, 215, 0, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+      .service-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+      .service-card:hover .service-icon {
+        background: #ffd700;
+        transform: scale(1.1);
+      }
+      .service-icon i {
+        font-size: 1.5rem;
+        color: #ffd700;
+      }
+      .service-card:hover .service-icon i {
+        color: #0a1128;
+      }
+      .service-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       /* Riscos e Solução */
@@ -341,26 +452,56 @@
         margin-right: 15px;
       }
 
-      /* Carrossel de Marcas */
+      /* Carrossel de Marcas Premium */
       .brands-marquee {
-        background: #ffffff;
-        padding: 50px 0;
+        background: #050814;
+        padding: 60px 0;
         overflow: hidden;
         white-space: nowrap;
         position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .brands-marquee::before,
+      .brands-marquee::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 100%;
+        z-index: 2;
+      }
+      .brands-marquee::before {
+        left: 0;
+        background: linear-gradient(to right, #050814 0%, transparent 100%);
+      }
+      .brands-marquee::after {
+        right: 0;
+        background: linear-gradient(to left, #050814 0%, transparent 100%);
       }
       .marquee-content {
-        display: inline-block;
-        animation: marquee 20s linear infinite;
+        display: inline-flex;
+        align-items: center;
+        animation: marquee 40s linear infinite;
+        gap: 60px;
       }
-      .marquee-content span {
-        font-family: "Montserrat", sans-serif;
+      .brand-item {
+        color: #ffffff;
+        font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        font-size: 2.5rem;
-        color: #0a1128;
-        margin: 0 50px;
+        font-size: 2rem;
+        letter-spacing: 4px;
         text-transform: uppercase;
-        opacity: 0.8;
+        opacity: 0.4;
+        transition: all 0.4s ease;
+        padding: 10px 20px;
+        border: 1px solid transparent;
+        white-space: nowrap;
+      }
+      .brand-item:hover {
+        opacity: 1;
+        color: #ffd700;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
       }
       @keyframes marquee {
         0% {
@@ -399,6 +540,99 @@
       .footer-info i {
         color: #ffd700;
         font-size: 1.2rem;
+      }
+
+      /* FAQ Styling */
+      .faq-section {
+        background: #050814;
+        padding: 100px 20px;
+      }
+      .faq-grid {
+        max-width: 850px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.3), rgba(15, 23, 42, 0.6));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-left: 3px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+      .faq-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 215, 0, 0.2);
+        transform: scale(1.01);
+      }
+      .faq-item.active {
+        background: rgba(15, 23, 42, 0.9);
+        border-left: 4px solid #ffd700;
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      .faq-question {
+        padding: 24px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        font-family: "Montserrat";
+        font-size: 1.1rem;
+        letter-spacing: -0.01em;
+        transition: color 0.3s;
+      }
+      .faq-item.active .faq-question {
+        color: #ffd700;
+      }
+      .faq-answer {
+        padding: 0 24px 24px;
+        color: #cbd5e0;
+        display: none;
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+      .faq-question i {
+        color: #ffd700;
+        transition: transform 0.3s;
+      }
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      /* Commercial Team Section */
+      .commercial-section {
+        background: radial-gradient(circle at center, #1a365d 0%, #050814 100%);
+        padding: 100px 20px;
+        text-align: center;
+      }
+      .commercial-content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .commercial-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px 0;
+        text-align: left;
+      }
+      .commercial-list-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .commercial-list-item i {
+        color: #ffd700;
       }
       .copyright {
         text-align: center;
@@ -450,16 +684,16 @@
       <div class="container">
         <div class="hero-content">
           <h1>
-            O Melhor Preço de Pneus da Última Década no
-            <span>Espírito Santo.</span>
+            O <span class="highlight">MELHOR PREÇO</span> DE PNEUS DA <br> <span class="sub-highlight">ÚLTIMA DÉCADA</span> NO ESPÍRITO SANTO.
           </h1>
           <p>
-            Segurança, economia e confiança no momento em que você sair da nossa
-            loja. Não arrisque a segurança da sua família.
+            A Thiago Pneus é a maior referência no Espírito Santo quando o assunto é pneus, são mais de XX anos de mercado, serviços automotivos e preço baixo.
           </p>
-          <a href="#orcamento" class="cta-button"
-            ><i class="fas fa-tags"></i> Garanta o Seu Agora</a
-          >
+          <div style="margin-top: 30px;">
+            <a href="#orcamento" class="cta-button">
+              <i class="fab fa-whatsapp"></i> GARANTA O SEU AGORA
+            </a>
+          </div>
         </div>
       </div>
     </header>
@@ -505,7 +739,7 @@
               />
             </div>
 
-            <div class="form-group">
+            <div class="form-group select-group">
               <label>Quantidade de pneus</label>
               <select name="qtd" required>
                 <option value="" disabled selected>Selecione...</option>
@@ -515,7 +749,7 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group select-group">
               <label>Precisa de instalação?</label>
               <select name="instalacao" required>
                 <option value="" disabled selected>Selecione...</option>
@@ -524,7 +758,7 @@
               </select>
             </div>
 
-            <div class="form-group full-width">
+            <div class="form-group full-width select-group">
               <label>Quando pretende trocar os pneus?</label>
               <select name="quando" required>
                 <option value="" disabled selected>Selecione o prazo...</option>
@@ -539,7 +773,7 @@
           </div>
 
           <button type="submit" class="submit-btn">
-            <i class="fab fa-whatsapp"></i> Receber Orçamento Agora
+            <i class="fab fa-whatsapp"></i> Receber orçamento
           </button>
         </form>
       </div>
@@ -548,18 +782,18 @@
     <!-- Estatísticas PRF -->
     <section class="stats-section">
       <div class="container">
-        <h2 class="section-title">O Perigo do Desgaste Oculto</h2>
+        <h2 class="section-title">SEGURANÇA EM <span class="highlight">PRIMEIRO LUGAR</span></h2>
         <p class="section-subtitle">
-          Segundo dados da Polícia Rodoviária Federal, problemas nos pneus estão
-          entre as principais causas de acidentes nas rodovias brasileiras.
+          Segundo dados da Polícia Rodoviária Federal, problemas nos pneus estão entre as principais causas de acidentes nas rodovias brasileiras, por desgaste excessivo e falta de manutenção.
         </p>
 
         <div class="stats">
           <div class="stat">
             <div class="stat-number">799</div>
             <p class="stat-text">
-              Acidentes nas rodovias federais causados por desgaste excessivo.
+              acidentes nas rodovias federais foram causados por desgaste excessivo, resultando em feridos & m@rtes.
             </p>
+            <a href="https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/diest-arquivos/copy_of_anuario-2019_final.html?utm_source=chatgpt.com" target="_blank" style="color: #63b3ed; font-size: 0.8rem;">Ref: Anuário PRF</a>
           </div>
           <div
             class="stat"
@@ -572,8 +806,7 @@
               ></i>
             </div>
             <p class="stat-text" style="color: #fff">
-              Menos aderência, mais chance de perder o controle e risco real de
-              acidente.
+              Menos aderência, mais chance de perder o controle e risco real de acidente.
             </p>
           </div>
         </div>
@@ -583,35 +816,51 @@
     <!-- Benefícios -->
     <section>
       <div class="container">
-        <h2 class="section-title">Por que todo estado do ES compra conosco?</h2>
+        <h2 class="section-title">POR QUE <span class="highlight">TODO ESTADO</span> DO ES COMPRA COM A GENTE?</h2>
         <p class="section-subtitle">
-          A Thiago Pneus é a maior referência no Espírito Santo. Diferente da
-          concorrência, não vendemos só pneus. Entregamos segurança, economia e
-          confiança.
+          Porque diferente da concorrência não vendemos só pneus. Entregamos segurança, economia e confiança no momento em que você sair da nossa Loja.
         </p>
 
         <div class="benefits-grid">
           <div class="benefit-card">
-            <i class="fas fa-tools"></i>
-            <h3>Montagem Profissional</h3>
-            <p>Serviço executado por especialistas.</p>
+            <i class="fas fa-wrench"></i>
+            <h3>Montagem profissional</h3>
           </div>
           <div class="benefit-card">
-            <i class="fas fa-car-side"></i>
-            <h3>Alinhamento 3D</h3>
-            <p>Balanceamento e alinhamento de precisão.</p>
+            <i class="fas fa-car"></i>
+            <h3>Alinhamento e balanceamento</h3>
           </div>
           <div class="benefit-card">
-            <i class="fas fa-cogs"></i>
-            <h3>Equipamentos Modernos</h3>
-            <p>Tecnologia de ponta para seu veículo.</p>
+            <i class="fas fa-users"></i>
+            <h3>Equipe especializada</h3>
           </div>
           <div class="benefit-card">
-            <i class="fas fa-hand-holding-usd"></i>
-            <h3>Melhor Preço</h3>
-            <p>Garantia do melhor negócio do mercado.</p>
+            <i class="fas fa-microchip"></i>
+            <h3>Equipamentos modernos</h3>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-bolt"></i>
+            <h3>Atendimento rápido</h3>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-store"></i>
+            <h3>Loja física grande e estruturada</h3>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Garantia de serviço</h3>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-tag"></i>
+            <h3>Melhor preço do mercado</h3>
           </div>
         </div>
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="#orcamento" class="cta-button">SOLICITAR ORÇAMENTO</a>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-weight: 600; font-size: 1.2rem;">
+          Enquanto muitos lugares vendem só o pneu, nós entregamos o carro pronto e seguro para rodar durante todo ano.
+        </p>
       </div>
     </section>
 
@@ -621,7 +870,7 @@
         <div class="comparison-grid">
           <div>
             <h2 class="section-title" style="text-align: left; font-size: 2rem">
-              Rodar com pneu careca pode causar:
+              RODAR COM <span class="highlight">PNEU CARECA</span> PODE CAUSAR:
             </h2>
             <ul class="risks-list">
               <li><i class="fas fa-times-circle"></i> Aquaplanagem</li>
@@ -634,7 +883,7 @@
               </li>
               <li><i class="fas fa-times-circle"></i> Multa</li>
               <li>
-                <i class="fas fa-times-circle"></i> Risco de acidente fatal
+                <i class="fas fa-times-circle"></i> Risco de acidente
               </li>
             </ul>
           </div>
@@ -644,40 +893,148 @@
               Agora pensa comigo:
             </h2>
             <p style="font-size: 1.1rem; color: #cbd5e0">
-              Se você já vai precisar trocar, não faz sentido pagar mais caro ou
-              comprar de qualquer lugar porque sua família precisa estar segura.
+              Se você já vai precisar trocar, não faz sentido pagar mais caro ou comprar de qualquer lugar porque sua família precisa estar segura. Você tem a chance de comprar:
             </p>
 
             <ul class="check-list">
               <li>
-                <i class="fas fa-check-circle"></i> Pneus novos com garantia
+                <i class="fas fa-check-circle"></i> Pneus nacionais e importados com <span class="highlight">PREÇO DE FÁBRICA</span>
               </li>
               <li>
-                <i class="fas fa-check-circle"></i> Instalados por profissionais
+                <i class="fas fa-check-circle"></i> Garantia total e procedência garantida
               </li>
               <li>
-                <i class="fas fa-check-circle"></i> Melhor preço do estado
+                <i class="fas fa-check-circle"></i> <span class="highlight">INSTALAÇÃO IMEDIATA</span> por equipe técnica
               </li>
               <li>
-                <i class="fas fa-check-circle"></i> Empresa referência no
-                mercado
+                <i class="fas fa-check-circle"></i> Melhor custo-benefício de todo o ES
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Empresa referência no mercado capixaba
               </li>
             </ul>
+            <div style="margin-top: 30px;">
+              <a href="#orcamento" class="cta-button" style="width: 100%; text-align: center;">SOLICITAR ORÇAMENTO</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Marcas (Marquee CSS) -->
-    <div class="brands-marquee">
-      <div class="marquee-content">
-        <span>Michelin</span><span>Pirelli</span><span>Goodyear</span
-        ><span>Bridgestone</span><span>Continental</span><span>Firestone</span
-        ><span>Dunlop</span> <span>Michelin</span><span>Pirelli</span
-        ><span>Goodyear</span><span>Bridgestone</span><span>Continental</span
-        ><span>Firestone</span><span>Dunlop</span>
+    <!-- Commercial Team Section -->
+    <section class="commercial-section">
+      <div class="container">
+        <div class="commercial-content">
+          <h2 class="section-title">VOCÊ NÃO VAI TROCAR PNEU TODO MÊS, ENTÃO FAÇA NO <span class="highlight">LUGAR CERTO</span>.</h2>
+          <p style="font-size: 1.3rem; margin-bottom: 20px; color: #ffd700; font-weight: 700;">
+            FALE AGORA COM NOSSO TIME E RECEBA OS MODELOS E PREÇOS NO WHATSAPP
+          </p>
+          <p>Clique no botão abaixo, fale com nosso comercial e receba:</p>
+          
+          <div class="commercial-list">
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Modelos disponíveis</div>
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Medidas para seu carro</div>
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Valores promocionais</div>
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Formas de pagamento</div>
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Parcelamento</div>
+            <div class="commercial-list-item"><i class="fas fa-check"></i> Agendamento de serviço</div>
+          </div>
+
+          <a href="#orcamento" class="cta-button">SOLICITAR ORÇAMENTO</a>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Marcas (Marquee CSS) -->
+    <section style="background: #050814;">
+      <div class="container">
+        <h2 class="section-title">Trabalhamos com as principais marcas do mercado</h2>
+        <p class="section-subtitle">Qualidade garantida para todos os tipos de veículos.</p>
+        <div class="brands-marquee">
+          <div class="marquee-content">
+            <span class="brand-item">Michelin</span>
+            <span class="brand-item">Pirelli</span>
+            <span class="brand-item">Goodyear</span>
+            <span class="brand-item">Bridgestone</span>
+            <span class="brand-item">Continental</span>
+            <span class="brand-item">Firestone</span>
+            <span class="brand-item">Dunlop</span>
+            <!-- Duplicados para o loop infinito -->
+            <span class="brand-item">Michelin</span>
+            <span class="brand-item">Pirelli</span>
+            <span class="brand-item">Goodyear</span>
+            <span class="brand-item">Bridgestone</span>
+            <span class="brand-item">Continental</span>
+            <span class="brand-item">Firestone</span>
+            <span class="brand-item">Dunlop</span>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="#orcamento" class="cta-button">RECEBER ORÇAMENTO AGORA</a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Footer Section Update & FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title"><span class="highlight">QUEM CONHECE</span>, CONFIA!</h2>
+        <p class="section-subtitle">A Thiago Pneus é uma das oficinas e lojas de pneus mais conhecidas da região, atendendo clientes todos os dias com excelência.</p>
+        
+        <div class="services-grid" style="margin-bottom: 60px;">
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-truck-pickup"></i></div>
+            <h3>Pneus nacionais e importados</h3>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-arrows-to-circle"></i></div>
+            <h3>Alinhamento</h3>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-scale-balanced"></i></div>
+            <h3>Balanceamento</h3>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-car-side"></i></div>
+            <h3>Suspensão</h3>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-circle-stop"></i></div>
+            <h3>Freios</h3>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-tools"></i></div>
+            <h3>Serviços automotivos em geral</h3>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 80px;">
+          <a href="#orcamento" class="cta-button">SOLICITAR ORÇAMENTO</a>
+        </div>
+
+        <h2 class="section-title"><span class="highlight">DÚVIDAS</span> FREQUENTES</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question">Quais as formas de pagamento? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Trabalhamos com cartões de crédito (parcelamento em até 10x), débito, PIX e dinheiro.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">A montagem é gratuita? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Sim! Comprando o pneu conosco, a montagem é por nossa conta.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Vocês atendem por ordem de chegada? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Sim, atendemos por ordem de chegada, mas você também pode agendar seu horário para maior comodidade.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Onde fica a loja? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Estamos na Av. Mal. Mascarenhas de Moraes, 1427 - Santa Maria, Vitória - ES.</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -689,20 +1046,18 @@
               Quem conhece, confia! Uma das lojas mais conhecidas da região.
             </p>
             <p style="margin-top: 20px; color: #ffd700; font-weight: bold">
-              Serviços:
+              Endereço:
             </p>
-            <p style="font-size: 0.95rem">
-              Pneus, Alinhamento, Balanceamento, Suspensão, Freios e Serviços
-              Automotivos.
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Av. Mal. Mascarenhas de Moraes, 1427<br />Santa Maria – Vitória / ES
             </p>
           </div>
           <div class="footer-info">
-            <h4>Contato & Endereço</h4>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> Av. Mal. Mascarenhas de
-              Moraes, 1427<br />Santa Maria – Vitória / ES
-            </p>
+            <h4>Horário de Funcionamento</h4>
             <p><i class="fas fa-clock"></i> Seg à Sex – 7:45 às 17:30</p>
+            <p style="margin-top: 20px; color: #ffd700; font-weight: bold">
+              Contato:
+            </p>
             <p><i class="fab fa-whatsapp"></i> (27) 99891-3705</p>
           </div>
         </div>
@@ -713,6 +1068,14 @@
     </footer>
 
     <script>
+      // FAQ Interactivity
+      document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+          const faqItem = button.parentElement;
+          faqItem.classList.toggle('active');
+        });
+      });
+
       // Formulário para WhatsApp
       document
         .getElementById("contactForm")
@@ -728,14 +1091,14 @@
           const quando = formData.get("quando");
 
           const mensagem =
-            `*Solicitação de Orçamento - Landing Page VIP*%0A%0A` +
+            `*Solicitação de Orçamento - Thiago Pneus*%0A%0A` +
             `*Nome:* ${nome}%0A` +
             `*Telefone:* ${tel}%0A` +
             `*Veículo:* ${veiculo}%0A` +
             `*Quantidade:* ${qtd}%0A` +
             `*Instalação:* ${instalacao}%0A` +
             `*Urgência:* ${quando}%0A%0A` +
-            `Gostaria de receber os modelos e preços disponíveis.`;
+            `Quero receber os modelos e preços no WhatsApp.`;
 
           const numeroWhatsApp = "5527998913705";
           const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
