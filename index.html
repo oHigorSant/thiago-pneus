@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiago Pneus - O Melhor Preço do ES</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a1128;
+        color: #ffffff;
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Faixa Topo */
+      .top-banner {
+        background-color: #ffd700;
+        color: #0a1128;
+        text-align: center;
+        padding: 12px 0;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 700px;
+        background-image: url("https://generated-images.adapta.one/higor_smoura%40hotmail.com/019d44f9-6d78-7780-a2e3-184162c4199f/2026-03-31T18-02-48-497Z_Ultra_realistic_high_end_automotive_photography.png");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(10, 17, 40, 0.95) 0%,
+          rgba(10, 17, 40, 0.6) 50%,
+          rgba(0, 0, 0, 0.4) 100%
+        );
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 20px;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+      .hero h1 span {
+        color: #ffd700;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #e2e8f0;
+      }
+      .cta-button {
+        background-color: #ffd700;
+        color: #0a1128;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+      }
+      .cta-button:hover {
+        background-color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(255, 215, 0, 0.4);
+      }
+
+      /* Formulário Glassmorphism */
+      .form-section {
+        position: relative;
+        margin-top: -150px;
+        z-index: 3;
+        padding: 0 20px;
+      }
+      .form-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 50px;
+        max-width: 800px;
+        margin: 0 auto;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      }
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #ffd700;
+        font-size: 2rem;
+      }
+      .form-container > p {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #cbd5e0;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #e2e8f0;
+        font-size: 0.95rem;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #ffffff;
+        font-size: 1rem;
+        font-family: "Inter", sans-serif;
+        transition: all 0.3s;
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #ffd700;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group select option {
+        background: #0a1128;
+        color: #fff;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background-color: #ffd700;
+        color: #0a1128;
+        padding: 18px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+      .submit-btn:hover {
+        background-color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      /* Seções Gerais */
+      section {
+        padding: 100px 0;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #a0aec0;
+        margin-bottom: 60px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Estatísticas PRF */
+      .stats-section {
+        background-color: #050814;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        flex: 1;
+        min-width: 250px;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 40px 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .stat-number {
+        font-size: 4.5rem;
+        color: #ffd700;
+        font-weight: 900;
+        font-family: "Montserrat";
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .stat-text {
+        font-size: 1.1rem;
+        color: #cbd5e0;
+      }
+
+      /* Benefícios */
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+      .benefit-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: #ffd700;
+      }
+      .benefit-card i {
+        font-size: 3rem;
+        color: #ffd700;
+        margin-bottom: 20px;
+      }
+      .benefit-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+      .benefit-card p {
+        color: #a0aec0;
+      }
+
+      /* Riscos e Solução */
+      .risks-section {
+        background-color: #050814;
+      }
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .risks-list {
+        list-style: none;
+      }
+      .risks-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        background: rgba(230, 57, 70, 0.1);
+        padding: 15px 20px;
+        border-radius: 12px;
+        border-left: 4px solid #e63946;
+      }
+      .risks-list i {
+        color: #e63946;
+        font-size: 1.5rem;
+        margin-right: 15px;
+      }
+
+      .solution-box {
+        background: rgba(255, 215, 0, 0.05);
+        padding: 50px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      .check-list {
+        list-style: none;
+        margin-top: 30px;
+      }
+      .check-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+      }
+      .check-list i {
+        color: #ffd700;
+        font-size: 1.5rem;
+        margin-right: 15px;
+      }
+
+      /* Carrossel de Marcas */
+      .brands-marquee {
+        background: #ffffff;
+        padding: 50px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+      }
+      .marquee-content {
+        display: inline-block;
+        animation: marquee 20s linear infinite;
+      }
+      .marquee-content span {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 2.5rem;
+        color: #0a1128;
+        margin: 0 50px;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Footer */
+      footer {
+        background: #000000;
+        color: #a0aec0;
+        padding: 60px 0 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-info h4 {
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+      .footer-info p {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.1rem;
+      }
+      .footer-info i {
+        color: #ffd700;
+        font-size: 1.2rem;
+      }
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 40px;
+        font-size: 0.9rem;
+      }
+
+      /* Responsivo */
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 600px;
+          text-align: center;
+        }
+        .hero-content {
+          margin: 0 auto;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-section {
+          margin-top: -50px;
+        }
+        .form-container {
+          padding: 30px 20px;
+        }
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-title {
+          font-size: 2rem;
+        }
+        .stat-number {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Faixa Topo -->
+    <div class="top-banner">
+      <i class="fas fa-clock"></i> Válido até o dia 30/04 (Preços anúncios do
+      mercado)
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>
+            O Melhor Preço de Pneus da Última Década no
+            <span>Espírito Santo.</span>
+          </h1>
+          <p>
+            Segurança, economia e confiança no momento em que você sair da nossa
+            loja. Não arrisque a segurança da sua família.
+          </p>
+          <a href="#orcamento" class="cta-button"
+            ><i class="fas fa-tags"></i> Garanta o Seu Agora</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Formulário Glassmorphism -->
+    <section id="orcamento" class="form-section">
+      <div class="form-container">
+        <h2>Solicitar Orçamento</h2>
+        <p>
+          Nosso atendimento vai te enviar o modelo para o seu carro e te ajudar
+          a escolher o pneu ideal.
+        </p>
+
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Nome Completo</label>
+              <input
+                type="text"
+                name="nome"
+                placeholder="Digite seu nome"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Telefone / WhatsApp</label>
+              <input
+                type="tel"
+                name="tel"
+                placeholder="(27) 90000-0000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Veículo (Modelo e Ano)</label>
+              <input
+                type="text"
+                name="veiculo"
+                placeholder="Ex: Corolla 2020"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Quantidade de pneus</label>
+              <select name="qtd" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="2 pneus">2 pneus</option>
+                <option value="4 pneus">4 pneus</option>
+                <option value="Ainda não sei">Ainda não sei</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Precisa de instalação?</label>
+              <select name="instalacao" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Quando pretende trocar os pneus?</label>
+              <select name="quando" required>
+                <option value="" disabled selected>Selecione o prazo...</option>
+                <option value="Urgente">Urgente</option>
+                <option value="Essa semana">Essa semana</option>
+                <option value="Esse mês">Esse mês</option>
+                <option value="Só pesquisando preço">
+                  Só pesquisando preço
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fab fa-whatsapp"></i> Receber Orçamento Agora
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Estatísticas PRF -->
+    <section class="stats-section">
+      <div class="container">
+        <h2 class="section-title">O Perigo do Desgaste Oculto</h2>
+        <p class="section-subtitle">
+          Segundo dados da Polícia Rodoviária Federal, problemas nos pneus estão
+          entre as principais causas de acidentes nas rodovias brasileiras.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">799</div>
+            <p class="stat-text">
+              Acidentes nas rodovias federais causados por desgaste excessivo.
+            </p>
+          </div>
+          <div
+            class="stat"
+            style="border-color: #e63946; background: rgba(230, 57, 70, 0.05)"
+          >
+            <div class="stat-number" style="color: #e63946">
+              <i
+                class="fas fa-exclamation-triangle"
+                style="font-size: 3rem"
+              ></i>
+            </div>
+            <p class="stat-text" style="color: #fff">
+              Menos aderência, mais chance de perder o controle e risco real de
+              acidente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Por que todo estado do ES compra conosco?</h2>
+        <p class="section-subtitle">
+          A Thiago Pneus é a maior referência no Espírito Santo. Diferente da
+          concorrência, não vendemos só pneus. Entregamos segurança, economia e
+          confiança.
+        </p>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <i class="fas fa-tools"></i>
+            <h3>Montagem Profissional</h3>
+            <p>Serviço executado por especialistas.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-car-side"></i>
+            <h3>Alinhamento 3D</h3>
+            <p>Balanceamento e alinhamento de precisão.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-cogs"></i>
+            <h3>Equipamentos Modernos</h3>
+            <p>Tecnologia de ponta para seu veículo.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-hand-holding-usd"></i>
+            <h3>Melhor Preço</h3>
+            <p>Garantia do melhor negócio do mercado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Riscos e Solução -->
+    <section class="risks-section">
+      <div class="container">
+        <div class="comparison-grid">
+          <div>
+            <h2 class="section-title" style="text-align: left; font-size: 2rem">
+              Rodar com pneu careca pode causar:
+            </h2>
+            <ul class="risks-list">
+              <li><i class="fas fa-times-circle"></i> Aquaplanagem</li>
+              <li>
+                <i class="fas fa-times-circle"></i> Perda de controle do carro
+              </li>
+              <li>
+                <i class="fas fa-times-circle"></i> Aumento do consumo de
+                combustível
+              </li>
+              <li><i class="fas fa-times-circle"></i> Multa</li>
+              <li>
+                <i class="fas fa-times-circle"></i> Risco de acidente fatal
+              </li>
+            </ul>
+          </div>
+
+          <div class="solution-box">
+            <h2 style="font-size: 2rem; margin-bottom: 15px">
+              Agora pensa comigo:
+            </h2>
+            <p style="font-size: 1.1rem; color: #cbd5e0">
+              Se você já vai precisar trocar, não faz sentido pagar mais caro ou
+              comprar de qualquer lugar porque sua família precisa estar segura.
+            </p>
+
+            <ul class="check-list">
+              <li>
+                <i class="fas fa-check-circle"></i> Pneus novos com garantia
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Instalados por profissionais
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Melhor preço do estado
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Empresa referência no
+                mercado
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marcas (Marquee CSS) -->
+    <div class="brands-marquee">
+      <div class="marquee-content">
+        <span>Michelin</span><span>Pirelli</span><span>Goodyear</span
+        ><span>Bridgestone</span><span>Continental</span><span>Firestone</span
+        ><span>Dunlop</span> <span>Michelin</span><span>Pirelli</span
+        ><span>Goodyear</span><span>Bridgestone</span><span>Continental</span
+        ><span>Firestone</span><span>Dunlop</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-info">
+            <h4>Thiago Pneus</h4>
+            <p>
+              Quem conhece, confia! Uma das lojas mais conhecidas da região.
+            </p>
+            <p style="margin-top: 20px; color: #ffd700; font-weight: bold">
+              Serviços:
+            </p>
+            <p style="font-size: 0.95rem">
+              Pneus, Alinhamento, Balanceamento, Suspensão, Freios e Serviços
+              Automotivos.
+            </p>
+          </div>
+          <div class="footer-info">
+            <h4>Contato & Endereço</h4>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Av. Mal. Mascarenhas de
+              Moraes, 1427<br />Santa Maria – Vitória / ES
+            </p>
+            <p><i class="fas fa-clock"></i> Seg à Sex – 7:45 às 17:30</p>
+            <p><i class="fab fa-whatsapp"></i> (27) 99891-3705</p>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2026 Thiago Pneus. Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Formulário para WhatsApp
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const nome = formData.get("nome");
+          const tel = formData.get("tel");
+          const veiculo = formData.get("veiculo");
+          const qtd = formData.get("qtd");
+          const instalacao = formData.get("instalacao");
+          const quando = formData.get("quando");
+
+          const mensagem =
+            `*Solicitação de Orçamento - Landing Page VIP*%0A%0A` +
+            `*Nome:* ${nome}%0A` +
+            `*Telefone:* ${tel}%0A` +
+            `*Veículo:* ${veiculo}%0A` +
+            `*Quantidade:* ${qtd}%0A` +
+            `*Instalação:* ${instalacao}%0A` +
+            `*Urgência:* ${quando}%0A%0A` +
+            `Gostaria de receber os modelos e preços disponíveis.`;
+
+          const numeroWhatsApp = "5527998913705";
+          const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+          window.open(url, "_blank");
+        });
+    </script>
+  </body>
+</html>
