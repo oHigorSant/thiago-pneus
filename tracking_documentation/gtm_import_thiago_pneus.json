@@ -1,0 +1,101 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-04-14 13:21:00",
+  "containerVersion": {
+    "path": "accounts/12345/containers/67890/versions/0",
+    "accountId": "12345",
+    "containerId": "67890",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/12345/containers/67890",
+      "accountId": "12345",
+      "containerId": "67890",
+      "publicId": "GTM-T7H4NRV9",
+      "usageContext": [
+        "WEB"
+      ]
+    },
+    "variable": [
+      { "name": "[Meta Ads] - Pixel ID", "type": "c", "parameter": [ { "type": "TEMPLATE", "key": "value", "value": "1614247633167400" } ] },
+      { "name": "GA4 - ID", "type": "c", "parameter": [ { "type": "TEMPLATE", "key": "value", "value": "G-WQGDDWYTV5" } ] },
+      
+      { "name": "[URL] - utm_source", "type": "u", "parameter": [ { "type": "TEMPLATE", "key": "component", "value": "QUERY" }, { "type": "TEMPLATE", "key": "queryKey", "value": "utm_source" } ] },
+      { "name": "[URL] - utm_medium", "type": "u", "parameter": [ { "type": "TEMPLATE", "key": "component", "value": "QUERY" }, { "type": "TEMPLATE", "key": "queryKey", "value": "utm_medium" } ] },
+      { "name": "[URL] - utm_campaign", "type": "u", "parameter": [ { "type": "TEMPLATE", "key": "component", "value": "QUERY" }, { "type": "TEMPLATE", "key": "queryKey", "value": "utm_campaign" } ] },
+      
+      { "name": "[DLV] - Lead Nome", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "lead_name" }, { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" } ] },
+      { "name": "[DLV] - Lead Telefone", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "lead_phone" }, { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" } ] },
+      { "name": "[DLV] - Lead Mensagem", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "lead_message" }, { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" } ] },
+      { "name": "[DLV] - Event Label", "type": "v", "parameter": [ { "type": "TEMPLATE", "key": "name", "value": "event_label" }, { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" } ] },
+      
+      { "name": "[JS] - Tempo de Carregamento", "type": "jsm", "parameter": [ { "type": "TEMPLATE", "key": "javascript", "value": "function(){ return Math.round(performance.now()); }" } ] },
+      { "name": "[JS] - Tipo de Usuario", "type": "jsm", "parameter": [ { "type": "TEMPLATE", "key": "javascript", "value": "function(){ return parseInt(localStorage.getItem('gtm_visits') || 0) > 1 ? 'recorrente' : 'novo'; }" } ] }
+    ],
+    "trigger": [
+      {
+        "name": "[Acionador] - Envio de Formulário",
+        "type": "FORM_SUBMISSION",
+        "filter": [
+          { "type": "EQUALS", "parameter": [ { "type": "TEMPLATE", "key": "arg1", "value": "{{Form ID}}" }, { "type": "TEMPLATE", "key": "arg2", "value": "contactForm" } ] }
+        ],
+        "waitForTags": { "type": "BOOLEAN", "value": "true" },
+        "checkValidation": { "type": "BOOLEAN", "value": "true" }
+      },
+      {
+        "name": "[Acionador] - Clique Whatsapp",
+        "type": "CLICK",
+        "customEventFilter": [
+          { "type": "MATCHES_SELECTOR", "parameter": [ { "type": "TEMPLATE", "key": "arg1", "value": "{{Click Element}}" }, { "type": "TEMPLATE", "key": "arg2", "value": "a[href*='wa.me'], .fa-whatsapp" } ] }
+        ]
+      },
+      {
+        "name": "[Acionador] - Clique Badge Servico",
+        "type": "CLICK",
+        "customEventFilter": [
+          { "type": "MATCHES_SELECTOR", "parameter": [ { "type": "TEMPLATE", "key": "arg1", "value": "{{Click Element}}" }, { "type": "TEMPLATE", "key": "arg2", "value": ".service-badge, .benefit-card" } ] }
+        ]
+      },
+      {
+        "name": "Initialization - All Pages",
+        "type": "PAGEVIEW",
+        "filter": [ { "type": "MATCHES_REGEX", "parameter": [ { "type": "TEMPLATE", "key": "arg1", "value": "{{Page Path}}" }, { "type": "TEMPLATE", "key": "arg2", "value": ".*" } ] } ]
+      }
+    ],
+    "tag": [
+      {
+        "name": "[Meta Ads] - Pixel Base",
+        "type": "html",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "html", "value": "<!-- Facebook Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;\nn.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,\ndocument,'script','https://connect.facebook.net/en_US/fbevents.js');\nfbq('init', '{{[Meta Ads] - Pixel ID}}');\nfbq('track', 'PageView');\n</script>\n<!-- End Facebook Pixel Code -->" }
+        ],
+        "firingTriggerId": [ "Initialization - All Pages" ],
+        "tagFiringOption": "ONCE_PER_PAGE"
+      },
+      {
+        "name": "[GA4] - TAG ID",
+        "type": "googtag",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "tagId", "value": "{{GA4 - ID}}" }
+        ],
+        "firingTriggerId": [ "Initialization - All Pages" ]
+      },
+      {
+        "name": "[Meta Ads] - Evento - Lead",
+        "type": "html",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "html", "value": "<script>\nfbq('track', 'Lead', {\n  content_name: '{{[DLV] - Lead Nome}}',\n  phone: '{{[DLV] - Lead Telefone}}',\n  comment: '{{[DLV] - Lead Mensagem}}',\n  utm_source: '{{[URL] - utm_source}}'\n});\n</script>" }
+        ],
+        "firingTriggerId": [ "[Acionador] - Envio de Formulário" ]
+      },
+      {
+        "name": "[GA4] - Evento - Lead",
+        "type": "ga4e",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "eventName", "value": "form_submit" },
+          { "type": "TEMPLATE", "key": "measurementId", "value": "{{GA4 - ID}}" }
+        ],
+        "firingTriggerId": [ "[Acionador] - Envio de Formulário" ]
+      }
+    ]
+  }
+}

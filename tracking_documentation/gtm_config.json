@@ -1,0 +1,254 @@
+{
+  "container_info": {
+    "gtm_id": "GTM-T7H4NRV9",
+    "pixel_id": "1614247633167400",
+    "ga4_id": "G-WQGDDWYTV5"
+  },
+  "variables": [
+    { "name": "[Meta Ads] - Pixel ID", "type": "Permanente", "value": "1614247633167400" },
+    { "name": "GA4 - ID", "type": "Permanente", "value": "G-WQGDDWYTV5" },
+    { "name": "Porcentagem de Rolagem Padrão", "type": "Permanente", "value": "25,50,75,90" },
+
+    { "name": "[URL] - utm_source",   "type": "URL", "component": "query", "query_key": "utm_source" },
+    { "name": "[URL] - utm_medium",   "type": "URL", "component": "query", "query_key": "utm_medium" },
+    { "name": "[URL] - utm_campaign", "type": "URL", "component": "query", "query_key": "utm_campaign" },
+    { "name": "[URL] - utm_term",     "type": "URL", "component": "query", "query_key": "utm_term" },
+    { "name": "[URL] - utm_content",  "type": "URL", "component": "query", "query_key": "utm_content" },
+
+    { "name": "[DLV] - Form ID",        "type": "Variável da camada de dados", "variable_name": "form_id" },
+    { "name": "[DLV] - Lead Nome",      "type": "Variável da camada de dados", "variable_name": "lead_name" },
+    { "name": "[DLV] - Lead Email",     "type": "Variável da camada de dados", "variable_name": "lead_email" },
+    { "name": "[DLV] - Lead Telefone",  "type": "Variável da camada de dados", "variable_name": "lead_phone" },
+    { "name": "[DLV] - Lead Mensagem",  "type": "Variável da camada de dados", "variable_name": "lead_message" },
+    { "name": "[DLV] - Lead Servico",   "type": "Variável da camada de dados", "variable_name": "lead_service" },
+
+    { "name": "[DLV] - UTM Source",   "type": "Variável da camada de dados", "variable_name": "utm_source" },
+    { "name": "[DLV] - UTM Medium",   "type": "Variável da camada de dados", "variable_name": "utm_medium" },
+    { "name": "[DLV] - UTM Campaign", "type": "Variável da camada de dados", "variable_name": "utm_campaign" },
+    { "name": "[DLV] - UTM Term",     "type": "Variável da camada de dados", "variable_name": "utm_term" },
+    { "name": "[DLV] - UTM Content",  "type": "Variável da camada de dados", "variable_name": "utm_content" },
+
+    { "name": "[DLV] - Event Category", "type": "Variável da camada de dados", "variable_name": "event_category" },
+    { "name": "[DLV] - Event Label",    "type": "Variável da camada de dados", "variable_name": "event_label" },
+    { "name": "[DLV] - Page Location",  "type": "Variável da camada de dados", "variable_name": "page_location" },
+    { "name": "[DLV] - Page Referrer",  "type": "Variável da camada de dados", "variable_name": "page_referrer" },
+
+    { "name": "[JS] - Idioma do Navegador",   "type": "JavaScript personalizado", "code": "function(){ return navigator.language; }" },
+    { "name": "[JS] - Resolucao de Tela",     "type": "JavaScript personalizado", "code": "function(){ return screen.width + 'x' + screen.height; }" },
+    { "name": "[JS] - Tempo de Carregamento", "type": "JavaScript personalizado", "code": "function(){ return Math.round(performance.now()); }" },
+    { "name": "[JS] - Total de Visitas",      "type": "JavaScript personalizado", "code": "function(){ return parseInt(localStorage.getItem('gtm_visits') || 0) + 1; }" },
+    { "name": "[JS] - Tipo de Usuario",       "type": "JavaScript personalizado", "code": "function(){ return parseInt(localStorage.getItem('gtm_visits') || 0) > 1 ? 'recorrente' : 'novo'; }" },
+
+    { "name": "[DOM] - Titulo Hero", "type": "Elemento DOM", "selector": ".hero h1", "attribute": "innerText" }
+  ],
+
+  "triggers": [
+    {
+      "name": "[Acionador] - Janela Carregada",
+      "type": "Janela carregada"
+    },
+    {
+      "name": "[Acionador] - Scroll Depth",
+      "type": "Profundidade de rolagem",
+      "percentages": [25, 50, 75, 90]
+    },
+    {
+      "name": "[Acionador] - 30 Segundos na Pagina",
+      "type": "Timer",
+      "interval": 30000,
+      "limit": 1
+    },
+    {
+      "name": "[Acionador] - Clique Whatsapp",
+      "type": "Todos os elementos",
+      "filter": "Click Element corresponde ao seletor a[href*='wa.me'], .fa-whatsapp"
+    },
+    {
+      "name": "[Acionador] - Clique Link Externo",
+      "type": "Apenas links",
+      "filter": "Click URL não contém {{Page Hostname}}"
+    },
+    {
+      "name": "[Acionador] - Cliques em Botões e Menus",
+      "type": "Todos os elementos",
+      "filter": "Click Classes corresponde a RegEx btn|button|menu|nav|cta|submit-btn"
+    },
+    {
+      "name": "[Acionador] - Envio de Formulário",
+      "type": "Envio de formulário",
+      "filter": "Form ID é igual a contactForm"
+    },
+    {
+      "name": "[Acionador] - Clique Badge Servico",
+      "type": "Todos os elementos",
+      "filter": "Click Classes corresponde a service-badge|benefit-card"
+    }
+  ],
+
+  "tags": [
+    {
+      "name": "[Meta Ads] - Pixel Base",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event": "PageView",
+      "trigger": "Initialization - All Pages"
+    },
+    {
+      "name": "[GA4] - TAG ID",
+      "type": "Tag do Google",
+      "measurement_id": "{{GA4 - ID}}",
+      "trigger": "Initialization - All Pages"
+    },
+
+    {
+      "name": "[Meta Ads] - Evento - Lead",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "Lead",
+      "trigger": "[Acionador] - Envio de Formulário",
+      "custom_data": {
+        "lead_name":     "{{[DLV] - Lead Nome}}",
+        "lead_phone":    "{{[DLV] - Lead Telefone}}",
+        "lead_service":  "{{[DLV] - Lead Servico}}",
+        "lead_message":  "{{[DLV] - Lead Mensagem}}",
+        "utm_source":    "{{[DLV] - UTM Source}}",
+        "utm_medium":    "{{[DLV] - UTM Medium}}",
+        "utm_campaign":  "{{[DLV] - UTM Campaign}}"
+      }
+    },
+    {
+      "name": "[GA4] - Evento - Lead",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "form_submit",
+      "trigger": "[Acionador] - Envio de Formulário",
+      "parameters": {
+        "form_id":       "{{[DLV] - Form ID}}",
+        "lead_service":  "{{[DLV] - Lead Servico}}",
+        "utm_source":    "{{[DLV] - UTM Source}}",
+        "utm_medium":    "{{[DLV] - UTM Medium}}"
+      }
+    },
+
+    {
+      "name": "[Meta Ads] - Evento - Click Whatsapp",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "Contact",
+      "trigger": "[Acionador] - Clique Whatsapp",
+      "custom_data": {
+        "utm_source":   "{{[URL] - utm_source}}",
+        "utm_medium":   "{{[URL] - utm_medium}}",
+        "utm_campaign": "{{[URL] - utm_campaign}}"
+      }
+    },
+    {
+      "name": "[GA4] - Evento - Click Whatsapp",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "whatsapp_click",
+      "trigger": "[Acionador] - Clique Whatsapp",
+      "parameters": {
+        "event_category": "engagement",
+        "event_label": "{{Click Element}}"
+      }
+    },
+
+    {
+      "name": "[Meta Ads] - Evento - ViewContent",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "ViewContent",
+      "trigger": "[Acionador] - Clique Badge Servico",
+      "custom_data": {
+        "content_name": "{{[DLV] - Event Label}}"
+      }
+    },
+    {
+      "name": "[GA4] - Evento - ViewContent",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "view_content",
+      "trigger": "[Acionador] - Clique Badge Servico",
+      "parameters": {
+        "content_name": "{{[DLV] - Event Label}}"
+      }
+    },
+
+    {
+      "name": "[Meta Ads] - Evento - Engaged User",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "EngagedUser",
+      "trigger": "[Acionador] - 30 Segundos na Pagina"
+    },
+    {
+      "name": "[GA4] - Evento - Engaged User",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "engaged_user",
+      "trigger": "[Acionador] - 30 Segundos na Pagina"
+    },
+    {
+      "name": "[Meta Ads] - Evento - Scroll",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "Scroll",
+      "trigger": "[Acionador] - Scroll Depth"
+    },
+    {
+      "name": "[GA4] - Evento - Scroll",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "scroll_depth",
+      "trigger": "[Acionador] - Scroll Depth"
+    },
+    {
+      "name": "[Meta Ads] - Evento - Outbound Click",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "OutboundClick",
+      "trigger": "[Acionador] - Clique Link Externo"
+    },
+    {
+      "name": "[GA4] - Evento - Outbound Click",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "outbound_click",
+      "trigger": "[Acionador] - Clique Link Externo",
+      "parameters": {
+        "link_url": "{{Click URL}}"
+      }
+    },
+    {
+      "name": "[Meta Ads] - Evento - Page Performance",
+      "type": "Facebook Pixel",
+      "pixel_id": "{{[Meta Ads] - Pixel ID}}",
+      "event_name": "PagePerformance",
+      "trigger": "[Acionador] - Janela Carregada",
+      "custom_data": {
+        "load_time":   "{{[JS] - Tempo de Carregamento}}",
+        "resolution":  "{{[JS] - Resolucao de Tela}}",
+        "language":    "{{[JS] - Idioma do Navegador}}"
+      }
+    },
+    {
+      "name": "[GA4] - Evento - Page Performance",
+      "type": "Google Analytics: evento do GA4",
+      "measurement_id": "{{GA4 - ID}}",
+      "event_name": "page_performance",
+      "trigger": "[Acionador] - Janela Carregada",
+      "parameters": {
+        "load_time":  "{{[JS] - Tempo de Carregamento}}",
+        "user_type":  "{{[JS] - Tipo de Usuario}}"
+      }
+    },
+
+    {
+      "name": "[Script] - Contador de Visitas",
+      "type": "HTML personalizado",
+      "trigger": "[Acionador] - Janela Carregada",
+      "html": "<script>localStorage.setItem('gtm_visits', parseInt(localStorage.getItem('gtm_visits') || 0) + 1);<\/script>"
+    }
+  ]
+}

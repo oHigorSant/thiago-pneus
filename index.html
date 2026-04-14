@@ -1429,33 +1429,77 @@
         });
       });
 
-      // Formulário para WhatsApp
+      // 1. Capturar UTMs da URL
+      function getUTMs() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utms = {};
+        const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+        keys.forEach(key => {
+          if (urlParams.has(key)) utms[key] = urlParams.get(key);
+        });
+        return utms;
+      }
+
+      // 2. Enviar para Kommo e WhatsApp
       document
         .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
+          
+          const btn = this.querySelector('button[type="submit"]');
+          const originalBtnText = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
+          btn.disabled = true;
 
           const formData = new FormData(this);
-          const nome = formData.get("nome");
-          const tel = formData.get("tel");
-          const veiculo = formData.get("veiculo");
-          const qtd = formData.get("qtd");
-          const instalacao = formData.get("instalacao");
-          const quando = formData.get("quando");
+          const dados = {
+            nome: formData.get("nome"),
+            tel: formData.get("tel"),
+            veiculo: formData.get("veiculo"),
+            qtd: formData.get("qtd"),
+            instalacao: formData.get("instalacao"),
+            quando: formData.get("quando"),
+            ...getUTMs()
+          };
 
+          // Enviar para o Bridge (Kommo CRM)
+          try {
+            const response = await fetch('kommo_bridge.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(dados)
+            });
+            
+            if (response.ok) {
+              console.log("✅ Lead enviado ao Kommo com sucesso.");
+            } else {
+              const errData = await response.text();
+              console.error("❌ Erro no Servidor Kommo:", errData);
+            }
+          } catch (err) {
+            console.error("❌ Erro de Conexão CRM:", err);
+          }
+
+          // Preparar mensagem para o WhatsApp
           const mensagem =
             `*Solicitação de Orçamento - Thiago Pneus*%0A%0A` +
-            `*Nome:* ${nome}%0A` +
-            `*Telefone:* ${tel}%0A` +
-            `*Veículo:* ${veiculo}%0A` +
-            `*Quantidade:* ${qtd}%0A` +
-            `*Instalação:* ${instalacao}%0A` +
-            `*Urgência:* ${quando}%0A%0A` +
+            `*Nome:* ${dados.nome}%0A` +
+            `*Telefone:* ${dados.tel}%0A` +
+            `*Veículo:* ${dados.veiculo}%0A` +
+            `*Quantidade:* ${dados.qtd}%0A` +
+            `*Instalação:* ${dados.instalacao}%0A` +
+            `*Urgência:* ${dados.quando}%0A%0A` +
             `Quero receber os modelos e preços no WhatsApp.`;
 
           const numeroWhatsApp = "5527998913705";
-          const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-          window.open(url, "_blank");
+          const urlWa = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+
+          // Delay para garantir que o tracking e o CRM foram processados
+          setTimeout(() => {
+            window.open(urlWa, "_blank");
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+          }, 800);
         });
 
       // Infinite Carousel Logic with Navigation Dots

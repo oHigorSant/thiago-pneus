@@ -1,0 +1,123 @@
+{
+  "site_name": "Thiago Pneus - O Melhor Preço do ES",
+  "domain": "https://ohigorsant.github.io/thiago.pneus/",
+  "container_convention": "GTM padrão [Prefixo] - Tipo - Nome",
+  "summary": {
+    "total_pages": 1,
+    "total_events": 10,
+    "high_priority": 3,
+    "medium_priority": 4,
+    "low_priority": 3,
+    "total_tags_meta": 9,
+    "total_tags_ga4": 9,
+    "total_triggers": 8,
+    "total_variables": 26
+  },
+  "pages": [
+    {
+      "id": "home",
+      "url_pattern": "/",
+      "purpose": "landing principal",
+      "events": [
+        {
+          "event_id": "whatsapp_click_general",
+          "element_text": "WhatsApp",
+          "selector": "a[href*='wa.me'], .fa-whatsapp",
+          "location": "vários (hero, footer, floating)",
+          "meta_event": "Contact",
+          "ga4_event": "whatsapp_click",
+          "tag_meta": "[Meta Ads] - Evento - Click Whatsapp",
+          "tag_ga4": "[GA4] - Evento - Click Whatsapp",
+          "trigger": "[Acionador] - Clique Whatsapp",
+          "trigger_type": "Todos os elementos",
+          "trigger_filter": "Click Element corresponde ao seletor a[href*='wa.me'], .fa-whatsapp",
+          "priority": "high"
+        },
+        {
+          "event_id": "form_submit_lead",
+          "element_text": "Receber orçamento",
+          "selector": "#contactForm",
+          "location": "seção orçamento",
+          "meta_event": "Lead",
+          "ga4_event": "form_submit",
+          "tag_meta": "[Meta Ads] - Evento - Lead",
+          "tag_ga4": "[GA4] - Evento - Lead",
+          "trigger": "[Acionador] - Envio de Formulário",
+          "trigger_type": "Envio de formulário",
+          "trigger_filter": "Form ID é igual a contactForm",
+          "priority": "high"
+        },
+        {
+          "event_id": "service_badge_click",
+          "element_text": "{Service Name}",
+          "selector": ".service-badge",
+          "location": "seção serviços",
+          "meta_event": "ViewContent",
+          "ga4_event": "view_content",
+          "tag_meta": "[Meta Ads] - Evento - ViewContent",
+          "tag_ga4": "[GA4] - Evento - ViewContent",
+          "trigger": "[Acionador] - Clique Badge Servico",
+          "trigger_type": "Todos os elementos",
+          "trigger_filter": "Click Classes corresponde a service-badge",
+          "priority": "medium"
+        },
+        {
+          "event_id": "engaged_user_time",
+          "element_text": "30 Segundos",
+          "selector": "window",
+          "location": "página inteira",
+          "meta_event": "EngagedUser",
+          "ga4_event": "engaged_user",
+          "tag_meta": "[Meta Ads] - Evento - Engaged User",
+          "tag_ga4": "[GA4] - Evento - Engaged User",
+          "trigger": "[Acionador] - 30 Segundos na Pagina",
+          "trigger_type": "Timer",
+          "trigger_filter": "Intervalo 30000ms, Limite 1",
+          "priority": "medium"
+        },
+        {
+          "event_id": "engaged_user_scroll",
+          "element_text": "Scroll 50%+",
+          "selector": "window",
+          "location": "página inteira",
+          "meta_event": "Scroll",
+          "ga4_event": "scroll_depth",
+          "tag_meta": "[Meta Ads] - Evento - Scroll",
+          "tag_ga4": "[GA4] - Evento - Scroll",
+          "trigger": "[Acionador] - Scroll Depth",
+          "trigger_type": "Profundidade de rolagem",
+          "trigger_filter": "Porcentagens 25, 50, 75, 90",
+          "priority": "medium"
+        },
+        {
+          "event_id": "outbound_click_prf",
+          "element_text": "Fonte: Anuário PRF",
+          "selector": "a[href*='anuario']",
+          "location": "seção estatísticas",
+          "meta_event": "OutboundClick",
+          "ga4_event": "outbound_click",
+          "tag_meta": "[Meta Ads] - Evento - Outbound Click",
+          "tag_ga4": "[GA4] - Evento - Outbound Click",
+          "trigger": "[Acionador] - Clique Link Externo",
+          "trigger_type": "Apenas links",
+          "trigger_filter": "Click URL não contém {{Page Hostname}}",
+          "priority": "low"
+        },
+        {
+          "event_id": "page_performance",
+          "element_text": "Carregamento",
+          "selector": "window",
+          "location": "página inteira",
+          "meta_event": "PagePerformance",
+          "ga4_event": "page_performance",
+          "tag_meta": "[Meta Ads] - Evento - Page Performance",
+          "tag_ga4": "[GA4] - Evento - Page Performance",
+          "trigger": "[Acionador] - Janela Carregada",
+          "trigger_type": "Janela carregada",
+          "trigger_filter": "Nenhum",
+          "priority": "medium"
+        }
+      ]
+    }
+  ]
+}
